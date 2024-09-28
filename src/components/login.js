@@ -1,28 +1,36 @@
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
-import { Container } from "react-bootstrap";
-
 export default function Login() {
   return (
-    <Container className="login_container">
-      <p className="title">Login</p>
-      <FloatingLabel
-        controlId="floatingInput"
-        label="Email address"
-        className="mb-3 mt-3"
-      >
-        <Form.Control type="email" placeholder="name@example.com" />
-      </FloatingLabel>
-      <FloatingLabel controlId="floatingPassword" label="Password">
-        <Form.Control type="password" placeholder="Password" />
-      </FloatingLabel>
-      <FloatingLabel
-        controlId="floatingPasswordCheck"
-        label="Confirm Password"
-        className="mt-3"
-      >
-        <Form.Control type="password" placeholder="Confirm Password" />
-      </FloatingLabel>
-    </Container>
+    <form className="login_container">
+      <h1 className="h3 mt-3 mb-3 fw-normal title">Please sign in</h1>
+
+      <div className="form-floating mb-3">
+        <input
+          type="email"
+          className="form-control"
+          id="email"
+          placeholder="name@example.com"
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div className="form-floating mb-3">
+        <input
+          type="password"
+          className="form-control"
+          id="password"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      <div className="checkbox mb-3 checkbox_text">
+        <label>
+          <input type="checkbox" value="remember-me" /> Remember me
+        </label>
+      </div>
+      <button className="w-100 btn btn-lg btn-primary" type="submit">
+        Sign in
+      </button>
+      <p className="mt-3 mb-3 date_text">© 2024</p>
+    </form>
   );
 }
