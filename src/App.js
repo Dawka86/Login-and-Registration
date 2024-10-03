@@ -1,4 +1,4 @@
-///import Login from "./components/login.js";
+
 import Pic from "./components/pic.js";
 
 import "./styles.css";
