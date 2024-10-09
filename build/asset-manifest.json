@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.a28fceef.css",
-    "main.js": "/static/js/main.625d86f7.js",
+    "main.js": "/static/js/main.8ffcb1ac.js",
     "static/media/jason-leung-UMncYEfO9-U-unsplash.jpg": "/static/media/jason-leung-UMncYEfO9-U-unsplash.38ed1ded998ab4d0a6e1.jpg",
     "index.html": "/index.html",
     "main.a28fceef.css.map": "/static/css/main.a28fceef.css.map",
-    "main.625d86f7.js.map": "/static/js/main.625d86f7.js.map"
+    "main.8ffcb1ac.js.map": "/static/js/main.8ffcb1ac.js.map"
   },
   "entrypoints": [
     "static/css/main.a28fceef.css",
-    "static/js/main.625d86f7.js"
+    "static/js/main.8ffcb1ac.js"
   ]
 }
