@@ -12,11 +12,11 @@ const port = 3000;
 env.config();
 
 const db = new pg.Client({
-    user: "postgres",
-    host: "localhost",
+    user: process.env.SECRET_USER,
+    host: process.env.SECRET_HOST,
     database: process.env.SECRET_DATABASE,
     password: process.env.SECRET_DATABASE_PASSWORD,
-    port: 5432,
+    port: process.env.SECRET_PORT,
 })
 
 // Middleware do parsowania danych z formularza
