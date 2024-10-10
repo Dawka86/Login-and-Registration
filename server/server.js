@@ -3,10 +3,21 @@ import bodyParser from "body-parser";
 import  {dirname}  from "path";
 import  {join } from "path";
 import { fileURLToPath } from "url";
+import pg from "pg";
+import env from "process";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
+env.config();
+
+const db = new pg.Client({
+    user: "postgres",
+    host: "localhost",
+    database: process.env.SECRET_DATABASE,
+    password: process.env.SECRET_DATABASE_PASSWORD,
+    port: 5432,
+})
 
 // Middleware do parsowania danych z formularza
 app.use(bodyParser.urlencoded({ extended: true }));
