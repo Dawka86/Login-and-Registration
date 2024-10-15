@@ -6,6 +6,7 @@
   "main": "src/index.tsx",
   "type": "module",
   "dependencies": {
+    "axios": "^1.7.7",
     "body-parser": "^1.20.3",
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
