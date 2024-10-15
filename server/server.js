@@ -1,32 +1,30 @@
 import express from "express";
 import bodyParser from "body-parser";
-import  {dirname}  from "path";
-import  {join } from "path";
+import { dirname } from "path";
+import { join } from "path";
 import { fileURLToPath } from "url";
 import pg from "pg";
 import env from "dotenv";
-
+import bcrypt from "bcrypt";
 
 const app = express();
 const port = 3000;
+const saltRounds = 10;
 env.config();
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-
 const db = new pg.Client({
-    user: `${process.env.SECRET_USER}`,
-    host: `${process.env.SECRET_HOST}`,
-    database: `${process.env.SECRET_DATABASE}`,
-    password: `${process.env.SECRET_DATABASE_PASSWORD}`,
-    port: `${process.env.SECRET_PORT}`,
+  user: `${process.env.SECRET_USER}`,
+  host: `${process.env.SECRET_HOST}`,
+  database: `${process.env.SECRET_DATABASE}`,
+  password: `${process.env.SECRET_DATABASE_PASSWORD}`,
+  port: `${process.env.SECRET_PORT}`,
 });
 db.connect();
 
 // Middleware do parsowania danych z formularza
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-
 
 // Statyczne pliki (z katalogu build)
 app.use(express.static(join(__dirname, "../build")));
@@ -37,19 +35,24 @@ app.get("/", (req, res) => {
 });
 
 // Obsługa formularza POST
-app.post("/submit", async(req, res) => {
+app.post("/submit", async (req, res) => {
   const email = req.body.email;
-  const password = req.body.password; 
+  const password = req.body.password;
 
-  const results = await db.query(
-    "INSERT INTO users (email, password) VALUES ($1, $2)  RETURNING id",
-    [email, password]
-  );
-  console.log(`Emaile added on new ID :`, results.rows[0].id);
-  res.send("Formularz odebrany!");
+  // Password Hashing
+  bcrypt.hash(password, saltRounds, async (err, hash) => {
+    if (err) {
+      console.log("Error hashing password", err);
+    } else {
+    const results = await db.query(
+      "INSERT INTO users (email, password) VALUES ($1, $2)  RETURNING id",
+      [email, hash]
+    );
+    console.log(`Emaile added on new ID :`, results.rows[0].id);
+  }
+    res.send("Formularz odebrany!");
+  });
 });
-
-
 
 // Start serwera
 app.listen(port, () => {
