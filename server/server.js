@@ -39,19 +39,27 @@ app.post("/submit", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  // Password Hashing
-  bcrypt.hash(password, saltRounds, async (err, hash) => {
-    if (err) {
-      console.log("Error hashing password", err);
-    } else {
+  
+  try {
+    // Haszowanie hasła
+    const hash = await bcrypt.hash(password, saltRounds);
+
+    // Wstawianie danych do bazy danych
     const results = await db.query(
-      "INSERT INTO users (email, password) VALUES ($1, $2)  RETURNING id",
+      "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id",
       [email, hash]
     );
-    console.log(`Emaile added on new ID :`, results.rows[0].id);
+    console.log(`Email added with new ID:`, results.rows[0].id);
+    res.send("Formularz odebrany!"); // Odpowiedź po udanym wstawieniu
+  } catch (error) {
+    if (error.code === "23505") {
+      console.error(`Duplicate key error`, error.detail)
+      res.status(400).send(`This email already exists: ${email}`)
+    } else {
+      console.error(`There was a problem processing the form`, error)
+      res.status(500).send(`There was a problem processing the form`)
+    }
   }
-    res.send("Formularz odebrany!");
-  });
 });
 
 // Start serwera
