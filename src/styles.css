@@ -3,6 +3,18 @@
   text-align: center;
  
 }
+.home_background{
+  background-image: url(./components/pictures/cassie-boca-x-tbVqkfQCU-unsplash.jpg);
+  background-size: cover; /* Dopasowanie obrazu do całej powierzchni */
+  background-position: center;
+  height: 100vh; 
+  display: flex;
+  justify-content: center; /* Centrowanie poziome */
+  align-items: center; /* Centrowanie pionowe */
+  color: rgb(255, 255, 255);
+  text-shadow: 0.5px 0.5px 0.5px black;
+
+}
 .pic_background{
   background-image: url(./components/pictures/jason-leung-UMncYEfO9-U-unsplash.jpg);
   background-size: cover; /* Dopasowanie obrazu do całej powierzchni */
@@ -32,3 +44,16 @@
   color: white;
   font-style: italic;
 }
+.material-symbols-outlined{
+  font-size: 11vh;
+  margin: 0.5vh;
+  text-shadow: 1px 1px 1px black;
+}
+.descriptive_text{
+  text-shadow: 1px 1px 1px black;
+}
+.button_decoration{
+  color: white;
+  border:  solid 2px white;
+}
+
