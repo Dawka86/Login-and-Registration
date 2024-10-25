@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <div className="home_background">
-      <div className="px-4 py-5 my-5 text-center">
+      <div className="px-4 py-5 my-5 text-center background_opacity">
         <span className="material-symbols-outlined">javascript</span>
         <span className="material-symbols-outlined">html</span>
         <span className="material-symbols-outlined">css</span>

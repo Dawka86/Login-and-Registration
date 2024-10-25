@@ -13,6 +13,13 @@
   align-items: center; /* Centrowanie pionowe */
   color: rgb(255, 255, 255);
   text-shadow: 0.5px 0.5px 0.5px black;
+  
+}
+.background_opacity{
+  padding: 30px;
+  height: auto;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
 
 }
 .pic_background{
@@ -45,7 +52,7 @@
   font-style: italic;
 }
 .material-symbols-outlined{
-  font-size: 11vh;
+  font-size: 9vh;
   margin: 0.5vh;
   text-shadow: 1px 1px 1px black;
 }
@@ -53,7 +60,13 @@
   text-shadow: 1px 1px 1px black;
 }
 .button_decoration{
-  color: white;
-  border:  solid 2px white;
+  color: rgb(0, 0, 0);
+  border:  solid 2px rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.5);
+  
+}
+.button_decoration:hover{
+  color: rgb(255, 255, 255);
+  border:  solid 2px rgb(0, 0, 0);
 }
 
