@@ -13,7 +13,7 @@ export default function Home() {
           <p className="lead mb-4 descriptive_text">
           "I have created a sample user login and registration page where user data is encrypted using bcrypt and stored in a PostgreSQL database. This page is built using React with the help of Bootstrap for styling."
           </p>
-          <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <div className="d-grid gap-3 d-sm-flex justify-content-sm-center p-3">
             <Link to="/submit">
               <button
                 type="button"

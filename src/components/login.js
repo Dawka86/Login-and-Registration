@@ -7,6 +7,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const currentDate = new Date();
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,7 +82,7 @@ export default function Login() {
         <button className="w-100 btn btn-lg btn-primary" type="submit ">
           Sign in
         </button>
-        <p className="mt-3 mb-3 date_text">© 2024</p>
+        <p className="mt-3 mb-3 date_text"> © {currentDate.getFullYear()}</p>
       </form>
       <p>{message}</p>
       <Link to="/">Back to main page</Link>
