@@ -39,7 +39,6 @@ app.post("/submit", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  
   try {
     // Haszowanie hasła
     const hash = await bcrypt.hash(password, saltRounds);
@@ -61,6 +60,22 @@ app.post("/submit", async (req, res) => {
     }
   }
 });
+
+app.post("/login", async (req,res)=>{
+  const email = req.body.email;
+  const password = req.body.password;
+
+  try {
+    const results = await db.query(
+      "SELECT * FROM users WHERE email = $1",
+      [email]
+    );
+    
+  } catch (error) {
+    
+  }
+
+})
 
 // Start serwera
 app.listen(port, () => {

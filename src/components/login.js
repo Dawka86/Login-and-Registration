@@ -6,9 +6,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const currentDate = new Date();
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +17,7 @@ export default function Login() {
     }
 
     try {
-      const response = await axios.post(`/submit`, { email, password });
+      const response = await axios.post(`/login`, { email, password });
       if (response.status === 200) {
         setMessage("Logowanie zakonczylo sie poprawnie");
       }
@@ -33,9 +31,9 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div className="pic_background">
       <form className="login_container" onSubmit={handleSubmit}>
-        <h1 className="h3 mt-3 mb-3 fw-normal title">Please register</h1>
+        <h1 className="h3 mt-3 mb-3 fw-normal title">Please login</h1>
 
         <div className="form-floating mb-3">
           <input
@@ -61,18 +59,6 @@ export default function Login() {
           />
           <label htmlFor="password">Password</label>
         </div>
-        <div className="form-floating mb-3">
-          <input
-            type="password"
-            className="form-control"
-            id="confirmPassword"
-            placeholder=""
-            name="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <label htmlFor="confirmPassword">Confirm Password</label>
-        </div>
 
         <div className="checkbox mb-3 checkbox_text">
           <label>
@@ -80,12 +66,17 @@ export default function Login() {
           </label>
         </div>
         <button className="w-100 btn btn-lg btn-primary" type="submit ">
-          Sign in
+          Login
         </button>
         <p className="mt-3 mb-3 date_text"> © {currentDate.getFullYear()}</p>
+        <p>
+          <Link to="/submit">If you are not registered?</Link>
+        </p>
+        <p>
+          <Link to="/">Back to main page</Link>
+        </p>
       </form>
       <p>{message}</p>
-      <Link to="/">Back to main page</Link>
     </div>
   );
 }

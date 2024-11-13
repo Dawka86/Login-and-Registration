@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Pic from "./components/pic.js";
+import Registration from "./components/registration.js";
+import Login from "./components/login.js";
 import Home from "./components/home.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -11,7 +12,8 @@ export default function App() {
       <div className="App">
         <Routes>
           <Route exact path="/" element={<Home/>}/>
-          <Route path="/submit" element={<Pic/>}/>
+          <Route path="/submit" element={<Registration/>}/>
+          <Route path="/login" element={<Login/>}/>
         </Routes>
       </div>
     </Router>

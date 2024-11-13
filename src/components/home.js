@@ -14,7 +14,7 @@ export default function Home() {
           "I have created a sample user login and registration page where user data is encrypted using bcrypt and stored in a PostgreSQL database. This page is built using React with the help of Bootstrap for styling."
           </p>
           <div className="d-grid gap-3 d-sm-flex justify-content-sm-center p-3">
-            <Link to="/submit">
+            <Link to="/login">
               <button
                 type="button"
                 className="btn btn-outline-secondary btn-lg px-4 gap-3 button_decoration"
