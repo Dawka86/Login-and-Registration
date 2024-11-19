@@ -13,7 +13,7 @@ You can view the live demo of the project here:
 - **Frontend**: React, React Router, Bootstrap
 - **Backend**: Express.js, bcrypt, body-parser
 - **Database**: PostgreSQL
-- **Deployment**: GitHub Pages (for frontend), Heroku or your server (for backend)
+- **Deployment**: GitHub Pages (for frontend),
 
 ## Features
 
