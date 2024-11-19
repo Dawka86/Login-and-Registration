@@ -2,7 +2,7 @@
   "name": "react",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://Dawka86.github.io/Login-and-Registration",
+  "homepage": "https://dawka86.github.io/Login-and-Registration",
   "keywords": [],
   "main": "src/index.tsx",
   "type": "module",
@@ -33,7 +33,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-  "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

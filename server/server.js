@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(express.static(join(__dirname, "../build")));
 
 // Obsługa strony głównej
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(join(__dirname, "../build/index.html"));
 });
 
