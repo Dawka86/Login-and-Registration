@@ -8,7 +8,7 @@ import "./styles.css";
 
 export default function App() {
   return (
-    <Router>
+    <Router basename="/Login-and-Registration">
       <div className="App">
         <Routes>
           <Route exact path="/" element={<Home/>}/>
