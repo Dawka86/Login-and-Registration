@@ -70,4 +70,32 @@
   border:  solid 2px rgb(254, 254, 254); 
   background-color: rgba(85, 119, 222, 0.5);
 }
+.message_error {
+  color: white;
+  font-weight: bold;
+  background-color: red;
+  border-radius: 5px;
+}
+.message_success{
+  color: white;
+  font-weight: bold;
+  background-color: rgb(16, 101, 22);
+  border-radius: 5px;
+}
+.hidden_background{
+  background-image: url(./components/pictures/isai-ramos-_3SFFsWqCVg-unsplash.jpg);
+  background-position: center;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  display: flex;
+}
+.hidden_text{
+  color: white;
+  font-size: xx-large;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+}
 

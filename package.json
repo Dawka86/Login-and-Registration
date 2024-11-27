@@ -2,7 +2,6 @@
   "name": "react",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://dawka86.github.io/Login-and-Registration",
   "keywords": [],
   "main": "src/index.tsx",
   "type": "module",

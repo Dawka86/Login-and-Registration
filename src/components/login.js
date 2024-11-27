@@ -1,31 +1,36 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [messageClass, setMessageClass] = useState("");
+  const navigate = useNavigate();
   const currentDate = new Date();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      setMessage("Hasla roznia sie od siebie!");
-      return;
-    }
-
     try {
       const response = await axios.post(`/login`, { email, password });
       if (response.status === 200) {
-        setMessage("Logowanie zakonczylo sie poprawnie");
+        setMessage("Login completed correctly");
+        setMessageClass("message_success");
+        navigate("/dashboard", { state: { user: response.data.user, message:"Login completed correctly!" } });
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        setMessage("Blad email juz istnieje!");
+        setMessage("Email error already exists!");
+        setMessageClass("message_error");
+      } else if (error.response.status === 401) {
+        setMessage("Password is wrong");
+        setMessageClass("message_error");
       } else {
-        setMessage("blad nie wiadomo skad?");
+        setMessage("something went wrong");
+        setMessageClass("message_error");
       }
     }
   };
@@ -75,8 +80,8 @@ export default function Login() {
         <p>
           <Link to="/">Back to main page</Link>
         </p>
+        <p className={messageClass}>{message}</p>
       </form>
-      <p>{message}</p>
     </div>
   );
 }

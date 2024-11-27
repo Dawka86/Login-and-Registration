@@ -8,9 +8,10 @@ import env from "dotenv";
 import bcrypt from "bcrypt";
 
 const app = express();
-const port = 3000;
+const port = 3001;
 const saltRounds = 10;
 env.config();
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const db = new pg.Client({
@@ -30,7 +31,7 @@ app.use(bodyParser.json());
 app.use(express.static(join(__dirname, "../build")));
 
 // Obsługa strony głównej
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(join(__dirname, "../build/index.html"));
 });
 
@@ -52,30 +53,41 @@ app.post("/submit", async (req, res) => {
     res.send("Formularz odebrany!"); // Odpowiedź po udanym wstawieniu
   } catch (error) {
     if (error.code === "23505") {
-      console.error(`Duplicate key error`, error.detail)
-      res.status(400).send(`This email already exists: ${email}`)
+      console.error(`Duplicate key error`, error.detail);
+      res.status(400).send(`This email already exists: ${email}`);
     } else {
-      console.error(`There was a problem processing the form`, error)
-      res.status(500).send(`There was a problem processing the form`)
+      console.error(`There was a problem processing the form`, error);
+      res.status(500).send(`There was a problem processing the form`);
     }
   }
 });
 
-app.post("/login", async (req,res)=>{
+app.post("/login", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
   try {
-    const results = await db.query(
-      "SELECT * FROM users WHERE email = $1",
-      [email]
-    );
-    
-  } catch (error) {
-    
-  }
+    const results = await db.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
 
-})
+    if (results.rows.length > 0) {
+      const users = results.rows[0];
+      const storePassword = users.password;
+      const match = await bcrypt.compare(password, storePassword);
+      if (match) {
+        res.status(200).json({message:"Logowanie zakończone pomyślnie!", users});
+      } else {
+        res.status(401).send("Nieprawidłowe hasło!");
+      }
+    } else {
+      res.status(404).send("Użytkownik nie istnieje");
+    }
+  } catch (error) {
+    console.error("Błąd logowania:", error);
+    res.status(500).send("Błąd serwera podczas logowania");
+  }
+});
 
 // Start serwera
 app.listen(port, () => {

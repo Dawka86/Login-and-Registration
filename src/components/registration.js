@@ -2,10 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+
 export default function Registration() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [messageClass, setMessageClass] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const currentDate = new Date();
 
@@ -21,12 +23,15 @@ export default function Registration() {
       const response = await axios.post(`/submit`, { email, password });
       if (response.status === 200) {
         setMessage("Logowanie zakonczylo sie poprawnie");
+        setMessageClass("message_success");
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setMessage("Blad email juz istnieje!");
+        setMessageClass("message_error");
       } else {
         setMessage("blad nie wiadomo skad?");
+        setMessageClass("message_error");
       }
     }
   };
@@ -35,7 +40,6 @@ export default function Registration() {
     <div className="pic_background">
       <form className="login_container" onSubmit={handleSubmit}>
         <h1 className="h3 mt-3 mb-3 fw-normal title">Please register</h1>
-
         <div className="form-floating mb-3">
           <input
             type="email"
@@ -72,7 +76,6 @@ export default function Registration() {
           />
           <label htmlFor="confirmPassword">Confirm Password</label>
         </div>
-
         <div className="checkbox mb-3 checkbox_text">
           <label>
             <input type="checkbox" value="remember-me" /> Remember me
@@ -88,8 +91,10 @@ export default function Registration() {
         <p>
           <Link to="/">Back to main page</Link>
         </p>
+        <p className={messageClass}>{message}</p>
       </form>
-      <p>{message}</p>
     </div>
+   
+    
   );
 }
