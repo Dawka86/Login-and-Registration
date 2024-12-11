@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Registration() {
@@ -9,28 +9,33 @@ export default function Registration() {
   const [message, setMessage] = useState("");
   const [messageClass, setMessageClass] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
   const currentDate = new Date();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setMessage("Hasla roznia sie od siebie!");
+      setMessage("Passwords are different");
+      setMessageClass("message_error")
       return;
     }
 
     try {
       const response = await axios.post(`/submit`, { email, password });
       if (response.status === 200) {
-        setMessage("Logowanie zakonczylo sie poprawnie");
+        setMessage("Registration has been completed correctly, you will be redirected in 5 seconds.");
         setMessageClass("message_success");
+
+
+        setTimeout(()=>{navigate("/login")}, 5000);
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        setMessage("Blad email juz istnieje!");
+        setMessage(" Email already exists!");
         setMessageClass("message_error");
       } else {
-        setMessage("blad nie wiadomo skad?");
+        setMessage("Error out of nowhere fdddddddb ddddddddddddddd dddddddddddddddd  ddddddddd dddddddddd?");
         setMessageClass("message_error");
       }
     }

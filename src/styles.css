@@ -5,15 +5,14 @@
 }
 .home_background{
   background-image: url(./components/pictures/cassie-boca-x-tbVqkfQCU-unsplash.jpg);
-  background-size: cover; /* Dopasowanie obrazu do całej powierzchni */
+  background-size: cover; 
   background-position: center;
   height: 100vh; 
   display: flex;
-  justify-content: center; /* Centrowanie poziome */
-  align-items: center; /* Centrowanie pionowe */
+  justify-content: center; 
+  align-items: center; 
   color: rgb(255, 255, 255);
   text-shadow: 0.5px 0.5px 0.5px black;
-  
 }
 .background_opacity{
   padding: 30px;
@@ -24,17 +23,20 @@
 }
 .pic_background{
   background-image: url(./components/pictures/jason-leung-UMncYEfO9-U-unsplash.jpg);
-  background-size: cover; /* Dopasowanie obrazu do całej powierzchni */
+  background-size: cover; 
   background-position: center;
   height: 100vh; 
   display: flex;
-  justify-content: center; /* Centrowanie poziome */
-  align-items: center; /* Centrowanie pionowe */
+  justify-content: center; 
+  align-items: center; 
+  overflow: hidden;
 }
 .login_container{
   background-color: rgb(4, 11, 71);
-  padding: 15px;
+  padding: 25px;
   border-radius: 12px;
+  max-width: 400px;
+  width: 100%;
 }
 .title{
   color: white;
@@ -62,8 +64,6 @@
 .button_decoration{
   color: rgb(255, 255, 255);
   border:  solid 2px rgb(255, 255, 255);
- 
-  
 }
 .button_decoration:hover{
   color: rgb(255, 255, 255);
@@ -73,14 +73,26 @@
 .message_error {
   color: white;
   font-weight: bold;
-  background-color: red;
+  background-color: red; 
   border-radius: 5px;
+  width: 100%; 
+  text-align: center;
+  padding: 10px;
+  margin: 10px 0;
+  display: block;
+  word-wrap: break-word;
 }
 .message_success{
   color: white;
   font-weight: bold;
   background-color: rgb(16, 101, 22);
   border-radius: 5px;
+  width: 100%;
+  max-width: 240px;
+  display: block; 
+  word-wrap: break-word; 
+  align-items: center;
+  justify-content: center;
 }
 .hidden_background{
   background-image: url(./components/pictures/isai-ramos-_3SFFsWqCVg-unsplash.jpg);
@@ -97,5 +109,11 @@
   font-weight: bolder;
   align-items: center;
   justify-content: center;
+}
+@media (max-width: 768px) {
+  .login_container {
+    padding: 15px;
+    width: 90%; 
+  }
 }
 
